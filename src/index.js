@@ -1,17 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react"
+import ReactDom from "react-dom"
+import "./index.css"
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const Room = () => {
+  const [islit,setlit]=React.useState(true)
+  const brightness = islit ? "lit" : "dark";
+  const [roomTemp,setroomTemp]=React.useState(22)
+  return (
+    <div className={`room ${brightness}`}>
+      This room is {islit ? "lit"  : "dark"} {roomTemp}
+      <br />
+      <button onClick={() => setlit(!islit)}>Flip</button>
+      <br />
+      Separate Buttons
+      <br/>
+      <button onClick={() => setlit(true)}>Turn On</button>
+      <button onClick={() => setlit(false)}>Turn Off</button>
+      <br/>
+      Change Temperature
+      <br/>
+      <button onClick={() => setroomTemp(1 + roomTemp)}>+</button>
+      <button onClick={() => setroomTemp(roomTemp-1)}>-</button>
+      
+    </div>
+  )
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDom.render(<Room/>, document.querySelector('#root'));
